@@ -27,3 +27,13 @@ request.onerror = function(event) {
   console.log(event.target.errorCode);
 }
 
+// function to add transactions to the db if app is offline
+function saveRecord(record) {
+  // opens a transaction on the pending object store with readwrite access
+  const transaction = db.transaction(['pending'], 'readwrite');
+  // accesses the pending object store
+  const store = transaction.objectStore('pending');
+
+  // adds the record to the store
+  store.add(record);
+}
