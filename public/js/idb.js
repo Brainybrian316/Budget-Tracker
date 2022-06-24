@@ -8,15 +8,15 @@ const request = indexedDB.open('budget-tracker', 1);
 request.onupgradeneeded = function (event) {
   // saves a reference to the db
   db = event.target.result;
-  // creates a new object store called pending with an autoIncrementing primary key
-  db.createObjectStore('pending', { autoIncrement: true });
+  // creates a new object store called new_transaction with an autoIncrementing primary key
+  db.createObjectStore('new_transaction', { autoIncrement: true });
 };
 
 //  if successful connection, then we trigger the following event
 request.onsuccess = function (event) {
   // saves a reference to the db
   db = event.target.result;
-  // if app is online upload pending transactions
+  // if app is online upload new_transaction transactions
   if (navigator.onLine) {
     checkDatabase();
   }
@@ -29,21 +29,21 @@ request.onerror = function (event) {
 
 // function to add transactions to the db if app is offline
 function saveRecord(record) {
-  // opens a transaction on the pending object store with readwrite access
-  const transaction = db.transaction(['pending'], 'readwrite');
-  // accesses the pending object store
-  const store = transaction.objectStore('pending');
+  // opens a transaction on the new_transaction object store with readwrite access
+  const transaction = db.transaction(['new_transaction'], 'readwrite');
+  // accesses the new_transaction object store
+  const store = transaction.objectStore('new_transaction');
 
   // adds the record to the store
   store.add(record);
 }
 
-// function to upload pending transactions to server if app is online
+// function to upload new_transaction transactions to server if app is online
 function checkDatabase() {
   //  opens a transaction on db with readwrite access
-  const transaction = db.transaction(['pending'], 'readwrite');
-  // accesses the pending object store and stores it in a variable called store
-  const store = transaction.objectStore('pending');
+  const transaction = db.transaction(['new_transaction'], 'readwrite');
+  // accesses the new_transaction object store and stores it in a variable called store
+  const store = transaction.objectStore('new_transaction');
   // gets all records from the store and stores it in a variable called getAllStores
   const getAllStores = store.getAll();
 
@@ -76,11 +76,11 @@ function checkDatabase() {
               throw new Error(data);
             }
 
-            //  opens a transaction on the pending object store with readwrite access
-            const transaction = db.transaction(['pending'], 'readwrite');
+            //  opens a transaction on the new_transaction object store with readwrite access
+            const transaction = db.transaction(['new_transaction'], 'readwrite');
 
-            // access the pending object store
-            const store = transaction.objectStore('pending');
+            // access the new_transaction object store
+            const store = transaction.objectStore('new_transaction');
 
             // removes all the records from the store
             store.clear(); // clear removes all the elements from a set
