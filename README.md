@@ -1,6 +1,6 @@
-# Budget-Tracker
 
-<h1 align="center">Welcome to Sweet Nostalgia Application👋</h1>
+
+<h1 align="center">Welcome to my Budget Tracker Application👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/Brainybrian316/Budget-Tracker#readme" target="_blank">
