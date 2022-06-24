@@ -20,7 +20,9 @@
 
 ### 🏠 [Live Page]()
 
-### ✨ [ScreenShot](./public/images/Budget-Tracker.png)
+<h3>✨ ScreenShot</h3>
+
+![ScreenShot](./public/images/Budget-Tracker.png)
 
 ***
 ## Install
