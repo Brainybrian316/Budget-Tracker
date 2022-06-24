@@ -46,6 +46,7 @@ self.addEventListener('fetch', event => {
       if (response) {
         return response;
       }
+      console.log('fetching');
       return fetch(event.request);
     }))
 })
